@@ -1,0 +1,52 @@
+License file for VSD File emd_nw2.vsd
+
+Source Audio and configuration information contained in this VSD file is
+ released under the GNU GPL2 license.
+
+Text of the GNU GPL2 license is available here: 
+http://www.gnu.org/licenses/gpl-2.0.html
+
+--------------------
+Source audio files and configuration data for the 
+JMRI Virtual Sound Decoder feature
+Configuration Copyright (C) 2011  Mark Underwood
+Source audio Copyright (C) 2011 respective authors listed below.
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License (see web link above)
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+--------------------
+
+Source Audio Attributions by file:
+
+Copyright (C) 2011 Ted Najzer (moogman 1978@yahoo.com)
+-------------------------------
+sounds/Bell-DblClap2.wav
+sounds/CSX_K5LA_Horn4_Doppler.wav
+sounds/CSX_K5LA_Horn4_End.wav
+sounds/CSX_K5LA_Horn4_Shortwav
+sounds/CSX_K5LA_Horn4_Start.wav
+sounds/CSX_K5LA_Horn4_Sustain.wav
+
+Copyright (C) 2011 Arnold Hübsch (office@huebsch.at
+-------------------------------
+sounds/nw2/hochf.wav
+sounds/nw2/Horn_echo.wav
+sounds/nw2/Horn.wav
+sounds/nw2/Motor_1.wav
+sounds/nw2/Motor_2.wav
+sounds/nw2/Motor.wav
+sounds/nw2/Start.wav
+sounds/nw2/stop.wav
+
+

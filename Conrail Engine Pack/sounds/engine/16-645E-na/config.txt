@@ -1,0 +1,38 @@
+﻿
+username                                "EMD 16-645E roots blown diesel engine sounds"
+kuid                                    <kuid2:37581:646:2>
+description                             "GM-EMD 16-645E roots blown diesel engine sounds"
+category-class                          "ZS"
+author                                  "Ryan Rasmussen (Therock)"
+organisation                            "JointedRail"
+contact-email                           "sales@jointedrail.com"
+contact-website                         "www.jointedrail.com"
+license                                 "All material is ©JointedRail Productions LLC, 2009-2012
+No modifications to be distributed without written permission."
+kind                                    "enginesound"
+engine-sound-ramp-up-durations          0,4.665,3.417,3.178,4.9,4.535,4.056,2.803
+engine-sound-ramp-down-durations        0,4.617,5.688,5.196,5.287,4.734,4.248,3.587
+number-cylinders                        16
+number-power-strokes                    2
+number-slow-sounds                      1
+category-region                         "US"
+category-era                            "1960s;1970s;1980s;1990s;2000s"
+trainz-build                            3.5
+
+obsolete-table
+{
+}
+
+thumbnails
+{
+  0
+  {
+    image                               "screenshot.jpg"
+    width                               240
+    height                              180
+  }
+}
+
+kuid-table
+{
+}

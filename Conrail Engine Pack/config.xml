@@ -1,0 +1,1683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/xml/XSLT/vsdecoder-config.xsl"?>
+<!-- <layout-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://jmri.org/xml/schema/vsdecoder/vsdecoder-config.xsd"> -->
+<!--
+Diesel Decoders
+Function Key 	Effect 	
+F0	Headlight/Backup Light
+F1	Bell
+F2	Airhorn
+F3	Short Airhorn 
+F4	Dynamic Brake
+F5	FX5 Output
+F6	FX6 Output
+F7	Dimmer
+F8	Mute
+F9	Radiator Fans
+F10	Air Compressor
+F11	Brake Squeal/Release
+F12	Coupler Clank
+-->
+
+<!--
+16-567D3: GP30 - http://jointedrail.com/dependencies/engine-sounds/trainz-2012/16567d3-ts12.html
+12-645E: SW1500 - http://jointedrail.com/dependencies/engine-sounds/trainz-2012/12-645e-engsound-ts12.html
+
+
+
+-->
+<vsdecoder-config>
+	<profile name="EMD 16-645E NA (Roots Blown/non-turbo) w Leslie RS-3L (Common Conrail 3 Chime) Horn (GP38s/GP38-2s)">
+		<!-- generic bell borrowed from the NW2 -->
+		<sound-event name="BELL" label="Bell" buttontype="TOGGLE">
+			<trigger name="BELL_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="BELL_STOP" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_START" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<!-- Leslie RS3L horn -->
+		<sound-event name="HORN" label="Horn" buttontype="MOMENTARY">
+			<trigger name="HORN_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="HORN_STOP" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_START" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="AIRBRAKE" label="Air Brake" buttontype="TOGGLE">
+			<trigger name="AIRBRAKE_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_START" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_STOP" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="AIRBRAKE" type="configurable">
+			<start-file>sounds/common/Compressor_start.wav</start-file>
+			<mid-file>sounds/common/Compressor_run.wav</mid-file>
+			<end-file>sounds/common/Compressor_end.wav</end-file>
+			<start-sound_duration>4043</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound-event name="COUPLER" label="Coupler" buttontype="MOMENTARY">
+			<trigger name="COUPLER_PLAY" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>COUPLER-SOUND</target-name>
+				<match>true</match>
+				<action>PLAY</action>
+			</trigger>
+			<trigger name="COUPLER_PLAY" type="BOOLEAN">
+				<event-name>F12</event-name>
+				<target-name>COUPLER-SOUND</target-name>
+				<match>true</match>
+				<action>PLAY</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="CLICK-CLACK" label="Click-Clack" buttontype="TOGGLE">
+			<trigger name="CLICKCLACK_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_START" type="BOOLEAN">
+				<event-name>F8</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_STOP" type="BOOLEAN">
+				<event-name>F8</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="ENGINE" label="Throttle" buttontype="ENGINE">
+			<trigger name="ENGINE_NOTCH" type="THROTTLE">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<action>CHANGE</action>
+			</trigger>
+			<trigger name="ENGINE_STOP" type="FLOAT" valtype="FLOAT">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<match>0.0</match>
+				<compare-type>LT</compare-type>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="BELL" type="configurable">
+			<mid-file>sounds/horns/bell.wav</mid-file>
+			<start-sound-duration>136</start-sound-duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="RS3L-HORN" type="configurable">
+			<start-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-start.wav</start-file>
+			<mid-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-sustain.wav</mid-file>
+			<end-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-end.wav</end-file>
+			<short-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-short.wav</short-file>
+			<start-sound-duration>250</start-sound-duration>
+			<gain>0.9</gain>
+		</sound>
+		<sound name="COUPLER-SOUND" type="configurable">
+			<start-file>sounds/common/Coupler.wav</start-file>
+			<start-sound-duration>950</start-sound-duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="CLICK-CLACK" type="configurable">
+			<mid-file>sounds/common/upclacksound2.wav</mid-file>
+			<start-sound_duration>136</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		
+		<sound name="ENGINE" type="diesel3">
+			<fade-in-time>0</fade-in-time>
+			<fade-out-time>0</fade-out-time>
+			<gain>0.2</gain>
+			<start-sound>
+				<file>sounds/engine/16-645E-na/idle-1.wav</file>
+			</start-sound>
+			<shutdown-sound>
+				<file>sounds/engine/16-645E-na/idle-1.wav</file>
+			</shutdown-sound>
+			<idle-notch>1</idle-notch>
+			<notch-sound>
+				<notch>1</notch>
+				<file>sounds/engine/16-645E-na/idle-1.wav</file>
+				<next-notch>2</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>20</accel-limit>
+				<accel-file>sounds/engine/16-645E-na/up1-2.wav</accel-file>
+				<decel-limit>0</decel-limit>
+				<decel-file>sounds/engine/16-645E-na/idle-1.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>2</notch>
+				<next-notch>3</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>40</accel-limit>
+				<decel-limit>20</decel-limit>
+				<file>sounds/engine/16-645E-na/idle-2.wav</file>				
+				<accel-file>sounds/engine/16-645E-na/up2-3.wav</accel-file>
+				<decel-file>sounds/engine/16-645E-na/down2-1.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>3</notch>
+				<next-notch>4</next-notch>
+				<prev-notch>2</prev-notch>
+				<accel-limit>50</accel-limit>
+				<decel-limit>40</decel-limit>
+				<file>sounds/engine/16-645E-na/idle-3.wav</file>				
+				<accel-file>sounds/engine/16-645E-na/up3-4.wav</accel-file>
+				<decel-file>sounds/engine/16-645E-na/down3-2.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>4</notch>
+				<next-notch>5</next-notch>
+				<prev-notch>4</prev-notch>
+				<accel-limit>60</accel-limit>
+				<decel-limit>50</decel-limit>
+				<file>sounds/engine/16-645E-na/idle-4.wav</file>				
+				<accel-file>sounds/engine/16-645E-na/up4-5.wav</accel-file>
+				<decel-file>sounds/engine/16-645E-na/down4-5.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>5</notch>
+				<next-notch>6</next-notch>
+				<prev-notch>4</prev-notch>
+				<accel-limit>70</accel-limit>
+				<decel-limit>60</decel-limit>
+				<file>sounds/engine/16-645E-na/idle-5.wav</file>				
+				<accel-file>sounds/engine/16-645E-na/up5-6.wav</accel-file>
+				<decel-file>sounds/engine/16-645E-na/down5-4.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>6</notch>
+				<next-notch>7</next-notch>
+				<prev-notch>5</prev-notch>
+				<accel-limit>80</accel-limit>
+				<decel-limit>60</decel-limit>
+				<file>sounds/engine/16-645E-na/idle-6.wav</file>				
+				<accel-file>sounds/engine/16-645E-na/up6-7.wav</accel-file>
+				<decel-file>sounds/engine/16-645E-na/down6-5.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>7</notch>
+				<next-notch>8</next-notch>
+				<prev-notch>6</prev-notch>
+				<accel-limit>90</accel-limit>
+				<decel-limit>80</decel-limit>
+				<file>sounds/engine/16-645E-na/idle-7.wav</file>				
+				<accel-file>sounds/engine/16-645E-na/up7-8.wav</accel-file>
+				<decel-file>sounds/engine/16-645E-na/down7-6.wav</decel-file>				
+			</notch-sound>			
+			<notch-sound>
+				<notch>8</notch>
+				<next-notch>8</next-notch>
+				<prev-notch>7</prev-notch>
+				<accel-limit>100</accel-limit>
+				<decel-limit>90</decel-limit>
+				<file>sounds/engine/16-645E-na/idle-8.wav</file>			
+				<accel-file>sounds/engine/16-645E-na/idle-8.wav</accel-file>
+				<decel-file>sounds/engine/16-645E-na/down8-7.wav</decel-file>				
+
+			</notch-sound>						
+		</sound>
+	</profile>
+	<profile name="EMD 16-567C NA (Roots Blown/non-turbo) w Leslie RS-3L (Common Conrail 3 Chime) Horn">
+		<!-- generic bell borrowed from the NW2 -->
+		<sound-event name="BELL" label="Bell" buttontype="TOGGLE">
+			<trigger name="BELL_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="BELL_STOP" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_START" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<!-- Leslie RS3L horn -->
+		<sound-event name="HORN" label="Horn" buttontype="MOMENTARY">
+			<trigger name="HORN_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="HORN_STOP" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_START" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="AIRBRAKE" label="Air Brake" buttontype="TOGGLE">
+			<trigger name="AIRBRAKE_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_START" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_STOP" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="AIRBRAKE" type="configurable">
+			<start-file>sounds/common/Compressor_start.wav</start-file>
+			<mid-file>sounds/common/Compressor_run.wav</mid-file>
+			<end-file>sounds/common/Compressor_end.wav</end-file>
+			<start-sound_duration>4043</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound-event name="COUPLER" label="Coupler" buttontype="MOMENTARY">
+			<trigger name="COUPLER_PLAY" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>COUPLER-SOUND</target-name>
+				<match>true</match>
+				<action>PLAY</action>
+			</trigger>
+			<trigger name="COUPLER_PLAY" type="BOOLEAN">
+				<event-name>F12</event-name>
+				<target-name>COUPLER-SOUND</target-name>
+				<match>true</match>
+				<action>PLAY</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="CLICK-CLACK" label="Click-Clack" buttontype="TOGGLE">
+			<trigger name="CLICKCLACK_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_START" type="BOOLEAN">
+				<event-name>F8</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_STOP" type="BOOLEAN">
+				<event-name>F8</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="ENGINE" label="Throttle" buttontype="ENGINE">
+			<trigger name="ENGINE_NOTCH" type="THROTTLE">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<action>CHANGE</action>
+			</trigger>
+			<trigger name="ENGINE_STOP" type="FLOAT" valtype="FLOAT">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<match>0.0</match>
+				<compare-type>LT</compare-type>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="BELL" type="configurable">
+			<mid-file>sounds/horns/bell.wav</mid-file>
+			<start-sound-duration>136</start-sound-duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="RS3L-HORN" type="configurable">
+			<start-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-start.wav</start-file>
+			<mid-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-sustain.wav</mid-file>
+			<end-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-end.wav</end-file>
+			<short-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-short.wav</short-file>
+			<start-sound-duration>250</start-sound-duration>
+			<gain>0.9</gain>
+		</sound>
+		<sound name="COUPLER-SOUND" type="configurable">
+			<start-file>sounds/common/Coupler.wav</start-file>
+			<start-sound-duration>950</start-sound-duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="CLICK-CLACK" type="configurable">
+			<mid-file>sounds/common/upclacksound2.wav</mid-file>
+			<start-sound_duration>136</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="ENGINE" type="diesel3">
+			<fade-in-time>0</fade-in-time>
+			<fade-out-time>0</fade-out-time>
+			<gain>0.3</gain>
+			<start-sound>
+				<file>sounds/engine/16-567C-na/start-short.wav</file>
+			</start-sound>
+			<shutdown-sound>
+				<file>sounds/engine/16-567C-na/stop.wav</file>
+			</shutdown-sound>
+			<idle-notch>1</idle-notch>
+			<notch-sound>
+				<notch>1</notch>
+				<file>sounds/engine/16-567C-na/idle-1.wav</file>
+				<next-notch>2</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>20</accel-limit>
+				<accel-file>sounds/engine/16-567C-na/up1-2.wav</accel-file>
+				<decel-limit>0</decel-limit>
+				<decel-file>sounds/engine/16-567C-na/idle-1.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>2</notch>
+				<next-notch>3</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>40</accel-limit>
+				<decel-limit>20</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-2.wav</file>				
+				<accel-file>sounds/engine/16-567C-na/up2-3.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down2-1.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>3</notch>
+				<next-notch>4</next-notch>
+				<prev-notch>2</prev-notch>
+				<accel-limit>50</accel-limit>
+				<decel-limit>40</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-3.wav</file>				
+				<accel-file>sounds/engine/16-567C-na/up3-4.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down3-2.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>4</notch>
+				<next-notch>5</next-notch>
+				<prev-notch>4</prev-notch>
+				<accel-limit>60</accel-limit>
+				<decel-limit>50</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-4.wav</file>				
+				<accel-file>sounds/engine/16-567C-na/up4-5.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down4-5.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>5</notch>
+				<next-notch>6</next-notch>
+				<prev-notch>4</prev-notch>
+				<accel-limit>70</accel-limit>
+				<decel-limit>60</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-5.wav</file>				
+				<accel-file>sounds/engine/16-567C-na/up5-6.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down5-4.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>6</notch>
+				<next-notch>7</next-notch>
+				<prev-notch>5</prev-notch>
+				<accel-limit>80</accel-limit>
+				<decel-limit>70</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-6.wav</file>				
+				<accel-file>sounds/engine/16-567C-na/up6-7.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down6-5.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>7</notch>
+				<next-notch>8</next-notch>
+				<prev-notch>6</prev-notch>
+				<accel-limit>90</accel-limit>
+				<decel-limit>80</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-7.wav</file>				
+				<accel-file>sounds/engine/16-567C-na/up7-8.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down7-6.wav</decel-file>				
+			</notch-sound>			
+			<notch-sound>
+				<notch>8</notch>
+				<next-notch>8</next-notch>
+				<prev-notch>7</prev-notch>
+				<accel-limit>100</accel-limit>
+				<decel-limit>90</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-8.wav</file>			
+				<accel-file>sounds/engine/16-567C-na/idle-8.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down8-7.wav</decel-file>				
+
+			</notch-sound>						
+		</sound>
+	</profile>
+	<profile name="EMD 16-567C NA (Roots Blown/non-turbo) w Wabco E2 (Single Chime Road Unit Horn) Horn">
+		<!-- generic bell borrowed from the NW2 -->
+		<sound-event name="BELL" label="Bell" buttontype="TOGGLE">
+			<trigger name="BELL_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="BELL_STOP" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_START" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<!-- Wabco E2 horn -->
+		<sound-event name="HORN" label="Horn" buttontype="MOMENTARY">
+			<trigger name="HORN_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>E2-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>E2-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="HORN_STOP" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>E2-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_START" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>E2-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="AIRBRAKE" label="Air Brake" buttontype="TOGGLE">
+			<trigger name="AIRBRAKE_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_START" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_STOP" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="AIRBRAKE" type="configurable">
+			<start-file>sounds/common/Compressor_start.wav</start-file>
+			<mid-file>sounds/common/Compressor_run.wav</mid-file>
+			<end-file>sounds/common/Compressor_end.wav</end-file>
+			<start-sound_duration>4043</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound-event name="COUPLER" label="Coupler" buttontype="MOMENTARY">
+			<trigger name="COUPLER_PLAY" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>COUPLER-SOUND</target-name>
+				<match>true</match>
+				<action>PLAY</action>
+			</trigger>
+			<trigger name="COUPLER_PLAY" type="BOOLEAN">
+				<event-name>F12</event-name>
+				<target-name>COUPLER-SOUND</target-name>
+				<match>true</match>
+				<action>PLAY</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="CLICK-CLACK" label="Click-Clack" buttontype="TOGGLE">
+			<trigger name="CLICKCLACK_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_START" type="BOOLEAN">
+				<event-name>F8</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_STOP" type="BOOLEAN">
+				<event-name>F8</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="ENGINE" label="Throttle" buttontype="ENGINE">
+			<trigger name="ENGINE_NOTCH" type="THROTTLE">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<action>CHANGE</action>
+			</trigger>
+			<trigger name="ENGINE_STOP" type="FLOAT" valtype="FLOAT">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<match>0.0</match>
+				<compare-type>LT</compare-type>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="BELL" type="configurable">
+			<mid-file>sounds/horns/bell.wav</mid-file>
+			<start-sound-duration>136</start-sound-duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="E2-HORN" type="configurable">
+			<start-file>sounds/horns/Wabco-E2/Wabco-e2-start.wav</start-file>
+			<mid-file>sounds/horns/Wabco-E2/Wabco-e2-sustain.wav</mid-file>
+			<end-file>sounds/horns/Wabco-E2/Wabco-e2-end.wav</end-file>
+			<short-file>sounds/horns/Wabco-E2/Wabco-e2-short.wav</short-file>
+			<start-sound-duration>250</start-sound-duration>
+			<gain>9.0</gain>
+		</sound>
+		<sound name="COUPLER-SOUND" type="configurable">
+			<start-file>sounds/common/Coupler.wav</start-file>
+			<start-sound-duration>950</start-sound-duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="CLICK-CLACK" type="configurable">
+			<mid-file>sounds/common/upclacksound2.wav</mid-file>
+			<start-sound_duration>136</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="ENGINE" type="diesel3">
+			<fade-in-time>0</fade-in-time>
+			<fade-out-time>0</fade-out-time>
+			<gain>0.3</gain>
+			<start-sound>
+				<file>sounds/engine/16-567C-na/start-short.wav</file>
+			</start-sound>
+			<shutdown-sound>
+				<file>sounds/engine/16-567C-na/stop.wav</file>
+			</shutdown-sound>
+			<idle-notch>1</idle-notch>
+			<notch-sound>
+				<notch>1</notch>
+				<file>sounds/engine/16-567C-na/idle-1.wav</file>
+				<next-notch>2</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>20</accel-limit>
+				<accel-file>sounds/engine/16-567C-na/up1-2.wav</accel-file>
+				<decel-limit>0</decel-limit>
+				<decel-file>sounds/engine/16-567C-na/idle-1.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>2</notch>
+				<next-notch>3</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>40</accel-limit>
+				<decel-limit>20</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-2.wav</file>				
+				<accel-file>sounds/engine/16-567C-na/up2-3.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down2-1.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>3</notch>
+				<next-notch>4</next-notch>
+				<prev-notch>2</prev-notch>
+				<accel-limit>50</accel-limit>
+				<decel-limit>40</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-3.wav</file>				
+				<accel-file>sounds/engine/16-567C-na/up3-4.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down3-2.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>4</notch>
+				<next-notch>5</next-notch>
+				<prev-notch>4</prev-notch>
+				<accel-limit>60</accel-limit>
+				<decel-limit>50</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-4.wav</file>				
+				<accel-file>sounds/engine/16-567C-na/up4-5.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down4-5.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>5</notch>
+				<next-notch>6</next-notch>
+				<prev-notch>4</prev-notch>
+				<accel-limit>70</accel-limit>
+				<decel-limit>60</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-5.wav</file>				
+				<accel-file>sounds/engine/16-567C-na/up5-6.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down5-4.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>6</notch>
+				<next-notch>7</next-notch>
+				<prev-notch>5</prev-notch>
+				<accel-limit>80</accel-limit>
+				<decel-limit>70</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-6.wav</file>				
+				<accel-file>sounds/engine/16-567C-na/up6-7.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down6-5.wav</decel-file>				
+			</notch-sound>
+			<notch-sound>
+				<notch>7</notch>
+				<next-notch>8</next-notch>
+				<prev-notch>6</prev-notch>
+				<accel-limit>90</accel-limit>
+				<decel-limit>80</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-7.wav</file>				
+				<accel-file>sounds/engine/16-567C-na/up7-8.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down7-6.wav</decel-file>				
+			</notch-sound>			
+			<notch-sound>
+				<notch>8</notch>
+				<next-notch>8</next-notch>
+				<prev-notch>7</prev-notch>
+				<accel-limit>100</accel-limit>
+				<decel-limit>90</decel-limit>
+				<file>sounds/engine/16-567C-na/idle-8.wav</file>			
+				<accel-file>sounds/engine/16-567C-na/idle-8.wav</accel-file>
+				<decel-file>sounds/engine/16-567C-na/down8-7.wav</decel-file>				
+
+			</notch-sound>						
+		</sound>
+	</profile>
+	<profile name="EMD 645 Turbo">
+		<!-- generic bell borrowed from the NW2 -->
+		<sound-event name="BELL" label="Bell" buttontype="TOGGLE">
+			<trigger name="BELL_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="BELL_STOP" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_START" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<!-- Nathan K5LA horn -->
+		<sound-event name="HORN" label="Horn" buttontype="MOMENTARY">
+			<trigger name="HORN_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>K5LA-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>K5LA-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="HORN_STOP" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>K5LA-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_START" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>K5LA-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="AIRBRAKE" label="Air Brake" buttontype="TOGGLE">
+			<trigger name="AIRBRAKE_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_START" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_STOP" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="AIRBRAKE" type="configurable">
+			<start-file>sounds/common/Compressor_start.wav</start-file>
+			<mid-file>sounds/common/Compressor_run.wav</mid-file>
+			<end-file>sounds/common/Compressor_end.wav</end-file>
+			<start-sound_duration>4043</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound-event name="COUPLER" label="Coupler" buttontype="MOMENTARY">
+			<trigger name="COUPLER_PLAY" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>COUPLER-SOUND</target-name>
+				<match>true</match>
+				<action>PLAY</action>
+			</trigger>
+			<trigger name="COUPLER_PLAY" type="BOOLEAN">
+				<event-name>F12</event-name>
+				<target-name>COUPLER-SOUND</target-name>
+				<match>true</match>
+				<action>PLAY</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="CLICK-CLACK" label="Click-Clack" buttontype="TOGGLE">
+			<trigger name="CLICKCLACK_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_START" type="BOOLEAN">
+				<event-name>F8</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_STOP" type="BOOLEAN">
+				<event-name>F8</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="ENGINE" label="Throttle" buttontype="ENGINE">
+			<trigger name="ENGINE_NOTCH" type="THROTTLE">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<action>CHANGE</action>
+			</trigger>
+			<trigger name="ENGINE_STOP" type="FLOAT" valtype="FLOAT">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<match>0.0</match>
+				<compare-type>LT</compare-type>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="BELL" type="configurable">
+			<mid-file>sounds/horns/bell.wav</mid-file>
+			<start-sound_duration>136</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="K5LA-HORN" type="configurable">
+			<start-file>sounds/horns/k5la/horn_start2.wav</start-file>
+			<mid-file>sounds/horns/k5la/horn_loop2.wav</mid-file>
+			<end-file>sounds/horns/k5la/horn_end.wav</end-file>
+			<short-file>sounds/horns/k5la/horn.wav</short-file>
+			<start-sound-duration>136</start-sound-duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="COUPLER-SOUND" type="configurable">
+			<start-file>sounds/common/Coupler.wav</start-file>
+			<start-sound-duration>950</start-sound-duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="CLICK-CLACK" type="configurable">
+			<mid-file>sounds/common/upclacksound2.wav</mid-file>
+			<start-sound_duration>136</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="ENGINE" type="diesel3">
+			<fade-in-time>0</fade-in-time>
+			<fade-out-time>0</fade-out-time>
+			<gain>0.5</gain>
+			<start-sound>
+				<file>sounds/engine/645turbo/Start.wav</file>
+			</start-sound>
+			<shutdown-sound>
+				<file>sounds/engine/645turbo/Shutdown.wav</file>
+			</shutdown-sound>
+			<idle-notch>1</idle-notch>
+			<notch-sound>
+				<notch>1</notch>
+				<file>sounds/engine/645turbo/Idle.wav</file>
+				<next-notch>2</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>10</accel-limit>
+				<accel-file>sounds/engine/645turbo/Idle-D1.wav</accel-file>
+				<decel-limit>0</decel-limit>
+				<decel-file>sounds/engine/645turbo/Idle.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>2</notch>
+				<file>sounds/engine/645turbo/D1.wav</file>
+				<next-notch>3</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>20</accel-limit>
+				<accel-file>sounds/engine/645turbo/D1-D2.wav</accel-file>
+				<decel-limit>10</decel-limit>
+				<decel-file>sounds/engine/645turbo/D1-Idle.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>3</notch>
+				<file>sounds/engine/645turbo/D2.wav</file>
+				<next-notch>4</next-notch>
+				<prev-notch>2</prev-notch>
+				<accel-limit>30</accel-limit>
+				<accel-file>sounds/engine/645turbo/D2-D3.wav</accel-file>
+				<decel-limit>20</decel-limit>
+				<decel-file>sounds/engine/645turbo/D2-D1.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>4</notch>
+				<file>sounds/engine/645turbo/D3.wav</file>
+				<next-notch>5</next-notch>
+				<prev-notch>3</prev-notch>
+				<accel-limit>40</accel-limit>
+				<accel-file>sounds/engine/645turbo/D3-D4.wav</accel-file>
+				<decel-limit>30</decel-limit>
+				<decel-file>sounds/engine/645turbo/D3-D2.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>5</notch>
+				<file>sounds/engine/645turbo/D4.wav</file>
+				<next-notch>6</next-notch>
+				<prev-notch>4</prev-notch>
+				<accel-limit>100</accel-limit>
+				<accel-file>sounds/engine/645turbo/D4.wav</accel-file>
+				<decel-limit>40</decel-limit>
+				<decel-file>sounds/engine/645turbo/D4-D3.wav</decel-file>
+			</notch-sound>
+		</sound>
+	</profile>
+	<profile name="GE 7FDL w Leslie RS-3L (Common Conrail 3 Chime) Horn">
+		<!-- generic bell borrowed from the NW2 -->
+		<sound-event name="BELL" label="Bell" buttontype="TOGGLE">
+			<trigger name="BELL_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="BELL_STOP" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_START" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="HORN" label="Horn" buttontype="MOMENTARY">
+			<trigger name="HORN_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="HORN_STOP" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_START" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="AIRBRAKE" label="Air Brake" buttontype="TOGGLE">
+			<trigger name="AIRBRAKE_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_START" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_STOP" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="AIRBRAKE" type="configurable">
+			<start-file>sounds/common/Compressor_start.wav</start-file>
+			<mid-file>sounds/common/Compressor_run.wav</mid-file>
+			<end-file>sounds/common/Compressor_end.wav</end-file>
+			<start-sound_duration>4043</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound-event name="COUPLER" label="Coupler" buttontype="MOMENTARY">
+			<trigger name="COUPLER_PLAY" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>COUPLER-SOUND</target-name>
+				<match>true</match>
+				<action>PLAY</action>
+			</trigger>
+			<trigger name="COUPLER_PLAY" type="BOOLEAN">
+				<event-name>F12</event-name>
+				<target-name>COUPLER-SOUND</target-name>
+				<match>true</match>
+				<action>PLAY</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="CLICK-CLACK" label="Click-Clack" buttontype="TOGGLE">
+			<trigger name="CLICKCLACK_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_START" type="BOOLEAN">
+				<event-name>F8</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_STOP" type="BOOLEAN">
+				<event-name>F8</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="ENGINE" label="Throttle" buttontype="ENGINE">
+			<trigger name="ENGINE_NOTCH" type="THROTTLE">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<action>CHANGE</action>
+			</trigger>
+			<trigger name="ENGINE_STOP" type="FLOAT" valtype="FLOAT">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<match>0.0</match>
+				<compare-type>LT</compare-type>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="BELL" type="configurable">
+			<mid-file>sounds/horns/bell.wav</mid-file>
+			<start-sound_duration>136</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="COUPLER-SOUND" type="configurable">
+			<start-file>sounds/common/Coupler.wav</start-file>
+			<start-sound-duration>950</start-sound-duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="CLICK-CLACK" type="configurable">
+			<mid-file>sounds/common/upclacksound2.wav</mid-file>
+			<start-sound_duration>136</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="RS3L-HORN" type="configurable">
+			<start-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-start.wav</start-file>
+			<mid-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-sustain.wav</mid-file>
+			<end-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-end.wav</end-file>
+			<short-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-short.wav</short-file>
+			<start-sound-duration>250</start-sound-duration>
+			<gain>0.9</gain>
+		</sound>
+		<sound name="ENGINE" type="diesel3">
+			<fade-in-time>0</fade-in-time>
+			<fade-out-time>0</fade-out-time>
+			<gain>0.5</gain>
+			<start-sound>
+				<file>sounds/engine/nw2/Start.wav</file>
+			</start-sound>
+			<shutdown-sound>
+				<file>sounds/engine/nw2/stop.wav</file>
+			</shutdown-sound>
+			<notch-sound>
+				<notch>1</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 1a.wav</file>
+				<next-notch>2</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>20</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 1 - 2.wav</accel-file>
+				<decel-limit>0</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/Idle 1.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>2</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 2a.wav</file>
+				<next-notch>3</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>40</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 2 - 3.wav</accel-file>
+				<decel-limit>20</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 2 - 1.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>3</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 3a.wav</file>
+				<next-notch>4</next-notch>
+				<prev-notch>2</prev-notch>
+				<accel-limit>50</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 3 - 4.wav</accel-file>
+				<decel-limit>40</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 3 - 2.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>4</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 4a.wav</file>
+				<next-notch>5</next-notch>
+				<prev-notch>3</prev-notch>
+				<accel-limit>60</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 4 - 5.wav</accel-file>
+				<decel-limit>50</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 4 - 3.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>5</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 5a.wav</file>
+				<next-notch>6</next-notch>
+				<prev-notch>4</prev-notch>
+				<accel-limit>70</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 5 - 6.wav</accel-file>
+				<decel-limit>60</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 5 - 4.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>6</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 6a.wav</file>
+				<next-notch>7</next-notch>
+				<prev-notch>5</prev-notch>
+				<accel-limit>80</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 6 - 7.wav</accel-file>
+				<decel-limit>70</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 6 - 5.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>7</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 7a.wav</file>
+				<next-notch>8</next-notch>
+				<prev-notch>6</prev-notch>
+				<accel-limit>90</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 7 - 8.wav</accel-file>
+				<decel-limit>80</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 7 - 6.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>8</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 8a.wav</file>
+				<next-notch>8</next-notch>
+				<prev-notch>7</prev-notch>
+				<accel-limit>100</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/Idle 8.wav</accel-file>
+				<decel-limit>90</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 8 - 7.wav</decel-file>
+			</notch-sound>
+		</sound>
+	</profile>
+	<profile name="GE 7FDL">
+		<!-- generic bell borrowed from the NW2 -->
+		<sound-event name="BELL" label="Bell" buttontype="TOGGLE">
+			<trigger name="BELL_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="BELL_STOP" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_START" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<!-- Leslie RS3L horn -->
+		<sound-event name="HORN" label="Horn" buttontype="MOMENTARY">
+			<trigger name="HORN_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="HORN_STOP" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_START" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>RS3L-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="AIRBRAKE" label="Air Brake" buttontype="TOGGLE">
+			<trigger name="AIRBRAKE_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_START" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_STOP" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="AIRBRAKE" type="configurable">
+			<start-file>sounds/common/Compressor_start.wav</start-file>
+			<mid-file>sounds/common/Compressor_run.wav</mid-file>
+			<end-file>sounds/common/Compressor_end.wav</end-file>
+			<start-sound_duration>4043</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound-event name="CLICK-CLACK" label="Click-Clack" buttontype="TOGGLE">
+			<trigger name="CLICKCLACK_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_START" type="BOOLEAN">
+				<event-name>F8</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="CLICKCLACK_STOP" type="BOOLEAN">
+				<event-name>F8</event-name>
+				<target-name>CLICK-CLACK</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="ENGINE" label="Throttle" buttontype="ENGINE">
+			<trigger name="ENGINE_NOTCH" type="THROTTLE">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<action>CHANGE</action>
+			</trigger>
+			<trigger name="ENGINE_STOP" type="FLOAT" valtype="FLOAT">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<match>0.0</match>
+				<compare-type>LT</compare-type>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="BELL" type="configurable">
+			<mid-file>sounds/horns/bell.wav</mid-file>
+			<start-sound_duration>136</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="RS3L-HORN" type="configurable">
+			<start-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-start.wav</start-file>
+			<mid-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-sustain.wav</mid-file>
+			<end-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-end.wav</end-file>
+			<short-file>sounds/horns/LeslieRS-3L/Leslie-RS-3L-short.wav</short-file>
+			<start-sound-duration>250</start-sound-duration>
+			<gain>0.9</gain>
+		</sound>
+		<sound name="COUPLER-SOUND" type="configurable">
+			<start-file>sounds/common/Coupler.wav</start-file>
+			<start-sound-duration>950</start-sound-duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="CLICK-CLACK" type="configurable">
+			<mid-file>sounds/common/upclacksound2.wav</mid-file>
+			<start-sound_duration>136</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="ENGINE" type="diesel3">
+			<fade-in-time>0</fade-in-time>
+			<fade-out-time>0</fade-out-time>
+			<gain>0.5</gain>
+			<start-sound>
+				<file>sounds/engine/nw2/Start.wav</file>
+			</start-sound>
+			<shutdown-sound>
+				<file>sounds/engine/nw2/stop.wav</file>
+			</shutdown-sound>
+			<notch-sound>
+				<notch>1</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 1a.wav</file>
+				<next-notch>2</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>13</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 1 - 2.wav</accel-file>
+				<decel-limit>0</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/Idle 1.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>2</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 2a.wav</file>
+				<next-notch>3</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>25</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 2 - 3.wav</accel-file>
+				<decel-limit>13</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 2 - 1.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>3</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 3a.wav</file>
+				<next-notch>4</next-notch>
+				<prev-notch>2</prev-notch>
+				<accel-limit>37</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 3 - 4.wav</accel-file>
+				<decel-limit>25</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 3 - 2.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>4</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 4a.wav</file>
+				<next-notch>5</next-notch>
+				<prev-notch>3</prev-notch>
+				<accel-limit>50</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 4 - 5.wav</accel-file>
+				<decel-limit>37</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 4 - 3.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>5</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 5a.wav</file>
+				<next-notch>6</next-notch>
+				<prev-notch>4</prev-notch>
+				<accel-limit>62</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 5 - 6.wav</accel-file>
+				<decel-limit>50</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 5 - 4.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>6</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 6a.wav</file>
+				<next-notch>7</next-notch>
+				<prev-notch>5</prev-notch>
+				<accel-limit>75</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 6 - 7.wav</accel-file>
+				<decel-limit>62</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 6 - 5.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>7</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 7a.wav</file>
+				<next-notch>8</next-notch>
+				<prev-notch>6</prev-notch>
+				<accel-limit>87</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/up 7 - 8.wav</accel-file>
+				<decel-limit>75</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 7 - 6.wav</decel-file>
+			</notch-sound>
+			<notch-sound>
+				<notch>8</notch>
+				<file>sounds/engine/ge7fdl/engine/Idle 8a.wav</file>
+				<next-notch>8</next-notch>
+				<prev-notch>7</prev-notch>
+				<accel-limit>100</accel-limit>
+				<accel-file>sounds/engine/ge7fdl/engine/Idle 8.wav</accel-file>
+				<decel-limit>87</decel-limit>
+				<decel-file>sounds/engine/ge7fdl/engine/down 8 - 7.wav</decel-file>
+			</notch-sound>
+		</sound>
+	</profile>
+	<profile name="EMD NW2">
+		<default />
+		<sound-event name="BELL" label="Bell" buttontype="TOGGLE">
+			<trigger name="BELL_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="BELL_STOP" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="BELL_START" type="BOOLEAN">
+				<event-name>F1</event-name>
+				<target-name>BELL</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="HORN" label="Horn" buttontype="MOMENTARY">
+			<trigger name="HORN_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>NW2-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>NW2-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="HORN_STOP" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>NW2-HORN</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="HORN_START" type="BOOLEAN">
+				<event-name>F2</event-name>
+				<target-name>NW2-HORN</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+		</sound-event>
+		<sound-event name="AIRBRAKE" label="Air Brake" buttontype="TOGGLE">
+			<trigger name="AIRBRAKE_BUTTON_START" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_BUTTON_STOP" type="BUTTON">
+				<event-name>BUTTON</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_START" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>true</match>
+				<action>LOOP</action>
+			</trigger>
+			<trigger name="AIRBRAKE_STOP" type="BOOLEAN">
+				<event-name>F10</event-name>
+				<target-name>AIRBRAKE</target-name>
+				<match>false</match>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="AIRBRAKE" type="configurable">
+			<start-file>sounds/common/Compressor_start.wav</start-file>
+			<mid-file>sounds/common/Compressor_run.wav</mid-file>
+			<end-file>sounds/common/Compressor_end.wav</end-file>
+			<start-sound_duration>4043</start-sound_duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound-event name="COUPLER" label="Coupler" buttontype="MOMENTARY" />
+		<sound-event name="ENGINE" label="Throttle" buttontype="ENGINE">
+			<trigger name="ENGINE_NOTCH" type="THROTTLE">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<action>CHANGE</action>
+			</trigger>
+			<trigger name="ENGINE_STOP" type="FLOAT" valtype="FLOAT">
+				<event-name>SpeedSetting</event-name>
+				<target-name>ENGINE</target-name>
+				<match>0.0</match>
+				<compare-type>LT</compare-type>
+				<action>STOP</action>
+			</trigger>
+		</sound-event>
+		<sound name="BELL" type="configurable">
+			<mid-file>sounds/horns/bell.wav</mid-file>
+			<start-sound-duration>136</start-sound-duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="NW2-HORN" type="configurable">
+			<start-file>sounds/engine/nw2/Horn_echo.wav</start-file>
+			<start-sound-duration>2000</start-sound-duration>
+			<gain>0.5</gain>
+		</sound>
+		<sound name="ENGINE" type="diesel3">
+			<fade-in-time>0</fade-in-time>
+			<fade-out-time>0</fade-out-time>
+			<gain>0.5</gain>
+			<start-sound>
+				<file>sounds/engine/nw2/Start.wav</file>
+			</start-sound>
+			<shutdown-sound>
+				<file>sounds/engine/nw2/stop.wav</file>
+			</shutdown-sound>
+			<notch-sound>
+				<notch>1</notch>
+				<file>sounds/engine/nw2/Motor.wav</file>
+				<next-notch>2</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>20</accel-limit>
+				<decel-limit>0</decel-limit>
+			</notch-sound>
+			<notch-sound>
+				<notch>2</notch>
+				<file>sounds/engine/nw2/Motor_2.wav</file>
+				<next-notch>3</next-notch>
+				<prev-notch>1</prev-notch>
+				<accel-limit>50</accel-limit>
+				<decel-limit>20</decel-limit>
+			</notch-sound>
+			<notch-sound>
+				<notch>3</notch>
+				<file>sounds/engine/nw2/Motor_1.wav</file>
+				<next-notch>3</next-notch>
+				<prev-notch>2</prev-notch>
+				<accel-limit>100</accel-limit>
+				<decel-limit>50</decel-limit>
+			</notch-sound>
+		</sound>
+	</profile>
+</vsdecoder-config>
