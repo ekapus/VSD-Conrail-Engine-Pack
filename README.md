@@ -1,9 +1,11 @@
 # VSD-Conrail-Engine-Pack
 
-Virtual Sound Decoders are JMRI functionality that allows modelers to simulate a sound decoder for a locomotive through their computer. 
-[About VSDs](https://www.jmri.org/help/en/package/jmri/jmrit/vsdecoder/VSDecoderFrame.shtml#:~:text=The%20Virtual%20Sound%20Decoder%20(%22VSDecoder,sound%20comes%20from%20your%20computer)
+Virtual Sound Decoders are JMRI functionality that allows modelers to simulate a sound decoder for a locomotive through their computer.
+
+[Learn about VSDs](https://www.jmri.org/help/en/package/jmri/jmrit/vsdecoder/VSDecoderFrame.shtml)
 
 I think it's a fascinating technology and I started playing around with it, creating a set of VSD definitions for some common locomotives that Conrail owned. 
+
 The files are, instead of being locomotive specific, represent combinations of prime mover and horn, since those are the major sound generators in a locomotive. 
 
 In my VSDs I have the following definitions:
