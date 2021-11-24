@@ -1,4 +1,4 @@
-# VSD-Conrail-Engine-Pack
+# Conrail Virtual Sound (VSD) Decoder Engine Pack for JMRI
 
 Virtual Sound Decoders are JMRI functionality that allows modelers to simulate a sound decoder for a locomotive through their computer.
 
